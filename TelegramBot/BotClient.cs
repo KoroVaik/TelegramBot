@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 
@@ -11,7 +8,7 @@ namespace TelegramBot
     {
         string _token = "1562086051:AAFqyQDk5qCDhk7bIm3tuwXa89a8YIXaDJw";
         TelegramBotClient _telegramBotClient;
-        
+
         public BotClient()
         {
             _telegramBotClient = new TelegramBotClient(_token);
@@ -28,6 +25,7 @@ namespace TelegramBot
         {
             var chatId = messageEventArgs.Message.Chat.Id;
             _telegramBotClient.SendTextMessageAsync(chatId, $"{DateTime.Now}");
+            Console.WriteLine("enterrr");
         }
     }
 }

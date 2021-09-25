@@ -1,10 +1,5 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TelegramBot
@@ -13,8 +8,18 @@ namespace TelegramBot
     {
         public static void Main(string[] args)
         {
+            Oo();
             var a = new BotClient();
             Console.Read();
+        }
+
+        public static async Task Oo()
+        {
+            while (false)
+            {
+                Thread.Sleep(3000);
+                Console.WriteLine();
+            }
         }
     }
 }
