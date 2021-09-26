@@ -31,7 +31,9 @@
     ".NETCoreApp,Version=v3.1": {
       "TelegramBot/1.0.0": {
         "dependencies": {
+          "HtmlAgilityPack": "1.11.36",
           "Telegram.Bot": "16.0.2",
+          "Telegram.Bot.Extensions.Polling": "0.2.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -320,6 +322,17 @@
         },
         "compile": {
           "TelegramBot.dll": {}
+        }
+      },
+      "HtmlAgilityPack/1.11.36": {
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.36.0",
+            "fileVersion": "1.11.36.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
@@ -1033,6 +1046,20 @@
         },
         "compile": {
           "lib/netstandard1.3/Telegram.Bot.dll": {}
+        }
+      },
+      "Telegram.Bot.Extensions.Polling/0.2.0": {
+        "dependencies": {
+          "Telegram.Bot": "16.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.dll": {
+            "assemblyVersion": "0.2.0.0",
+            "fileVersion": "0.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -2735,6 +2762,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "HtmlAgilityPack/1.11.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dCuPhd6Mcdz0oyaSidPqZZiaKcVaBnIqCQlvgJx7Qr5PJAjSatSIVPmuOwpMjbtR8mqoXyUbWVKxuairGGauJg==",
+      "path": "htmlagilitypack/1.11.36",
+      "hashPath": "htmlagilitypack.1.11.36.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -3273,6 +3307,13 @@
       "sha512": "sha512-kasIAeRUfXeeUCfwjLCtqCGi2PerSqpNnNQznZam/NxqNTAMxXKffsdtcKjSx34dH17FSIHEvLMkPkZed5JbfQ==",
       "path": "telegram.bot/16.0.2",
       "hashPath": "telegram.bot.16.0.2.nupkg.sha512"
+    },
+    "Telegram.Bot.Extensions.Polling/0.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dMQLswqe/Ke/W0EGAMrGGdo5ho/m/MXRok6OsUcj1XGVrbX7PPMv1vOIT7P8VVF8b7ykqNGQAUeknsjf+GX3iQ==",
+      "path": "telegram.bot.extensions.polling/0.2.0",
+      "hashPath": "telegram.bot.extensions.polling.0.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

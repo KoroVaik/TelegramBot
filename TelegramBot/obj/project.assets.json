@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "HtmlAgilityPack/1.11.36": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -1254,10 +1263,70 @@
         "runtime": {
           "lib/netstandard1.3/Telegram.Bot.dll": {}
         }
+      },
+      "Telegram.Bot.Extensions.Polling/0.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Telegram.Bot": "15.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "HtmlAgilityPack/1.11.36": {
+      "sha512": "dCuPhd6Mcdz0oyaSidPqZZiaKcVaBnIqCQlvgJx7Qr5PJAjSatSIVPmuOwpMjbtR8mqoXyUbWVKxuairGGauJg==",
+      "type": "package",
+      "path": "htmlagilitypack/1.11.36",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.1.11.36.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.3/HtmlAgilityPack.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.xml",
+        "lib/netstandard1.6/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.6/HtmlAgilityPack.dll",
+        "lib/netstandard1.6/HtmlAgilityPack.pdb",
+        "lib/netstandard1.6/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri"
+      ]
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
@@ -4696,11 +4765,28 @@
         "telegram.bot.16.0.2.nupkg.sha512",
         "telegram.bot.nuspec"
       ]
+    },
+    "Telegram.Bot.Extensions.Polling/0.2.0": {
+      "sha512": "dMQLswqe/Ke/W0EGAMrGGdo5ho/m/MXRok6OsUcj1XGVrbX7PPMv1vOIT7P8VVF8b7ykqNGQAUeknsjf+GX3iQ==",
+      "type": "package",
+      "path": "telegram.bot.extensions.polling/0.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Telegram.Bot.Extensions.Polling.dll",
+        "lib/netstandard2.0/Telegram.Bot.Extensions.Polling.xml",
+        "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.dll",
+        "lib/netstandard2.1/Telegram.Bot.Extensions.Polling.xml",
+        "telegram.bot.extensions.polling.0.2.0.nupkg.sha512",
+        "telegram.bot.extensions.polling.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Telegram.Bot >= 16.0.2"
+      "HtmlAgilityPack >= 1.11.36",
+      "Telegram.Bot >= 16.0.2",
+      "Telegram.Bot.Extensions.Polling >= 0.2.0"
     ]
   },
   "packageFolders": {
@@ -4742,9 +4828,17 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "HtmlAgilityPack": {
+            "target": "Package",
+            "version": "[1.11.36, )"
+          },
           "Telegram.Bot": {
             "target": "Package",
             "version": "[16.0.2, )"
+          },
+          "Telegram.Bot.Extensions.Polling": {
+            "target": "Package",
+            "version": "[0.2.0, )"
           }
         },
         "imports": [
@@ -4765,7 +4859,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

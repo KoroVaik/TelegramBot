@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cdZ4KqP0tcwSy+YesxFBvN0ideBjt5oCY/eorNQAA1NMDd76r52GDCX9MiSLcqYVEXDZ+fdWc3WcUM1NXJG6dw==",
+  "dgSpecHash": "+BJMiZbiGuClW80XHovoB4HMO9dijk/GkC2jlhrPwIfYTTbbhQdCrkRU6aBL+ciSACY4RaZA3G4p7qSvurmBeA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Rostyslav_Porokhnia\\source\\repos\\TelegramBot\\TelegramBot\\TelegramBot.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\htmlagilitypack\\1.11.36\\htmlagilitypack.1.11.36.nupkg.sha512",
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
@@ -80,7 +81,8 @@
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\telegram.bot\\16.0.2\\telegram.bot.16.0.2.nupkg.sha512"
+    "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\telegram.bot\\16.0.2\\telegram.bot.16.0.2.nupkg.sha512",
+    "C:\\Users\\Rostyslav_Porokhnia\\.nuget\\packages\\telegram.bot.extensions.polling\\0.2.0\\telegram.bot.extensions.polling.0.2.0.nupkg.sha512"
   ],
   "logs": []
 }

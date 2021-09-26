@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace TelegramBot
 {
@@ -8,18 +6,9 @@ namespace TelegramBot
     {
         public static void Main(string[] args)
         {
-            Oo();
             var a = new BotClient();
+            a.Init();
             Console.Read();
-        }
-
-        public static async Task Oo()
-        {
-            while (false)
-            {
-                Thread.Sleep(3000);
-                Console.WriteLine();
-            }
         }
     }
 }
