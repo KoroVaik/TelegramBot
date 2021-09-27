@@ -6,9 +6,10 @@ namespace TelegramBot
     {
         public static void Main(string[] args)
         {
-            var a = new BotClient();
-            a.Init();
-            Console.Read();
+            var a = new BotManager();
+            a.StartReceivingAsync();
+            Console.ReadLine();
+            Console.WriteLine("Exit");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TelegramBot
 {
@@ -11,25 +12,39 @@ namespace TelegramBot
             Init();
         }
 
-        public string GetAnecdot(AnicdotResources anicdotResource)
+        public string GetAnecdot(AnicdotType anicdotResource)
         {
-            return _resources.Find(c => c.AnicdotResourceType == anicdotResource).GetRandomAnecdot();
+            return SearchResoursesContainAnicdotType(anicdotResource).GetRandom().GetRandomAnecdot(anicdotResource);
+        }
+
+        private IEnumerable<AnicdotClient> SearchResoursesContainAnicdotType(AnicdotType anicdotResource)
+        {
+            return _resources.Where(c => c.AnicdotTypes.Contains(anicdotResource));
         }
 
         private void Init()
         {
             _resources = new List<AnicdotClient>() {
-                new FirstAnicdotClient(url: "https://vse-shutochki.ru/anekdoty",
-                                  anicdotResourceType: AnicdotResources.Standart,
+                new VseShutochkiRuClient(domenUrl: "https://vse-shutochki.ru",
                                   paginationXPath: "//div[@class='pagination']//li[last()]/a",
-                                  postXPath: "//tr[@valign='top']/td[2]//div[@class='post']")
+                                  postXPath: "//tr[@valign='top']/td[2]//div[@class='post']",
+                                  anicdotCategories: new Dictionary<AnicdotType, string[]>{
+                                      [AnicdotType.Standart] = new string[]{ "anekdoty", "kvn-shutki" }
+                                  }),
+                new AnicdotClient(domenUrl: "https://nekdo.ru",
+                                  paginationXPath: "//div[@class='list']/a[@class='nav'][last()]",
+                                  postXPath: "//div[@class='content']/div[@class='text']",
+                                  anicdotCategories:new Dictionary<AnicdotType, string[]>{
+                                      [AnicdotType.Cenzored] = new string[]{ "censure" }
+                                  })
             };
         }
 
     }
 
-    public enum AnicdotResources
+    public enum AnicdotType
     {
-        Standart
+        Standart,
+        Cenzored
     }
 }

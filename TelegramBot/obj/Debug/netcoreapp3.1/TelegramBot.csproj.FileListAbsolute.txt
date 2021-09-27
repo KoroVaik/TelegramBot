@@ -23,3 +23,4 @@ C:\Users\Rostyslav_Porokhnia\source\repos\TelegramBot\TelegramBot\obj\Debug\netc
 C:\Users\Rostyslav_Porokhnia\source\repos\TelegramBot\TelegramBot\bin\Debug\netcoreapp3.1\Telegram.Bot.Extensions.Polling.dll
 C:\Users\Rostyslav_Porokhnia\source\repos\TelegramBot\TelegramBot\obj\Debug\netcoreapp3.1\TelegramBot.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Rostyslav_Porokhnia\source\repos\TelegramBot\TelegramBot\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
+C:\Users\Rostyslav_Porokhnia\source\repos\TelegramBot\TelegramBot\obj\Debug\netcoreapp3.1\TelegramBot.csproj.AssemblyReference.cache

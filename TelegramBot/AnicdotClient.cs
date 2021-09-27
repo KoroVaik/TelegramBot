@@ -7,51 +7,57 @@ namespace TelegramBot
 {
     public class AnicdotClient
     {
-        public readonly AnicdotResources AnicdotResourceType;
-        readonly string _url;
+        AnicdotType _currentAnicdotType;
+        readonly string _domenUrl;
+        readonly Dictionary<AnicdotType, string[]> _anicdotCategories;
+        
         protected readonly string _paginationXPath;
         protected readonly string _postXPath;
 
-        public AnicdotClient(string url, AnicdotResources anicdotResourceType, string paginationXPath, string postXPath)
+        protected string _urlWithEndp { 
+            get {
+                return _domenUrl + '/' + ChooseRandomEndpoint(_currentAnicdotType);
+
+            } 
+        }
+
+        public List<AnicdotType> AnicdotTypes => _anicdotCategories.Keys.ToList();
+
+        public AnicdotClient(string domenUrl, Dictionary<AnicdotType, string[]> anicdotCategories, string paginationXPath, string postXPath)
         {
-            AnicdotResourceType = anicdotResourceType;
-            _url = url;
+            _anicdotCategories = anicdotCategories;
+            _domenUrl = domenUrl;
             _paginationXPath = paginationXPath;
             _postXPath = postXPath;
         }
 
-        public virtual string GetRandomAnecdot()
+        public virtual string GetRandomAnecdot(AnicdotType anicdotType)
         {
-            return GetRandomAnecdot(GetRandomAnecdotsCollection());
+            _currentAnicdotType = anicdotType;
+            return GetRandomAnecdotNodeFromRandomPage().InnerText;
         }
 
-        public virtual string GetRandomAnecdot(List<string> anecdots)
+        protected virtual HtmlNode GetRandomAnecdotNodeFromRandomPage()
         {
-            int rndAnecdotNum = new Random().Next(0, anecdots.Count - 1);
-            return anecdots[rndAnecdotNum];
+            return GetAnecdotNodesFromRandomPage().GetRandom();
         }
 
-        protected virtual List<string> GetRandomAnecdotsCollection()
-        {
-            return GetRandomAnecdotNodes().Select(a => a.InnerText).ToList();
-        }
-
-        protected HtmlNodeCollection GetRandomAnecdotNodes()
+        protected virtual HtmlNodeCollection GetAnecdotNodesFromRandomPage()
         {
             int rndPagNum = new Random().Next(2, GetPaginationNumber());
-            return GetAnecdotNodes(rndPagNum);
+            return GetAnecdotNodesFromPage(rndPagNum);
         }
 
-        protected HtmlNodeCollection GetAnecdotNodes(int paginationNamber)
+        protected virtual HtmlNodeCollection GetAnecdotNodesFromPage(int paginationNamber)
         {
-            return GetHtmlResponse(_url + '/' + paginationNamber)
+            return GetHtmlResponse(_urlWithEndp + '/' + paginationNamber)
                 .DocumentNode
                 .SelectNodes(_postXPath);
         }
 
         protected virtual int GetPaginationNumber()
         {
-            string paginationString = GetHtmlResponse(_url)
+            string paginationString = GetHtmlResponse(_urlWithEndp)
                 .DocumentNode
                 .SelectSingleNode(_paginationXPath)
                 .InnerText;
@@ -61,6 +67,11 @@ namespace TelegramBot
         protected HtmlDocument GetHtmlResponse(string url)
         {
             return new HtmlWeb().Load(url);
+        }
+
+        private string ChooseRandomEndpoint(AnicdotType anicdotType)
+        {
+            return _anicdotCategories[anicdotType].GetRandom();
         }
     }
 }
