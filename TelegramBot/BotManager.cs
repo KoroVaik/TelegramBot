@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
@@ -24,7 +26,7 @@ namespace TelegramBot
             updateReceiver = new QueuedUpdateReceiver(bot);
             userIdList = new HashSet<long>();
             inlineKeyboardMarkup = new InlineKeyboardMarkup(
-                new List<InlineKeyboardButton> { 
+                new List<InlineKeyboardButton> {
                     AnicdotType.Standart.ToString(),
                     AnicdotType.Cenzored.ToString()
                 });
@@ -52,7 +54,7 @@ namespace TelegramBot
             }
         }
 
-        private async void ProcessMessageAsync(Message message)
+        private void ProcessMessageAsync(Message message)
         {
             string messageText = "Вибери анегдот:";
             Chat chat = message.Chat;
@@ -60,16 +62,17 @@ namespace TelegramBot
             {
                 messageText = $"Здаров {chat.Username} \n" + messageText;
             }
-            await bot.SendTextMessageAsync(chat, messageText, replyMarkup: inlineKeyboardMarkup);
+            bot.SendTextMessageAsync(chat, messageText, replyMarkup: inlineKeyboardMarkup);
         }
 
         private async void ProcessCallbackQueryAsync(CallbackQuery callbackQuery)
         {
             long chatId = callbackQuery.Message.Chat.Id;
             AnicdotType anicdotType = (AnicdotType)Enum.Parse(typeof(AnicdotType), callbackQuery.Data);
-            string anecdot = anikdotManager.GetAnecdot(anicdotType);
-            await bot.SendTextMessageAsync(chatId, anecdot, replyMarkup: inlineKeyboardMarkup);
+            var anecdot = anikdotManager.GetAnecdotAsync(anicdotType);
             await bot.EditMessageReplyMarkupAsync(chatId, callbackQuery.Message.MessageId);
+            var message = await bot.SendTextMessageAsync(chatId, "Шукаем анегдот...");
+            await bot.EditMessageTextAsync(chatId, message.MessageId, await anecdot, replyMarkup: inlineKeyboardMarkup);
         }
 
         private bool IsUserChatIdExist(long userId)

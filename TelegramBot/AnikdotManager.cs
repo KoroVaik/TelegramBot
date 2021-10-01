@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TelegramBot
 {
@@ -11,15 +13,17 @@ namespace TelegramBot
         {
             Init();
         }
-
-        public string GetAnecdot(AnicdotType anicdotResource)
-        {
-            return SearchResoursesContainAnicdotType(anicdotResource).GetRandom().GetRandomAnecdot(anicdotResource);
+        public async Task<string> GetAnecdotAsync(AnicdotType anicdotResource)
+        {         
+            var a = SearchResoursesContainAnicdotType(anicdotResource);
+            var b = a.GetRandom();
+            var c = await b.GetRandomAnecdotAsync(anicdotResource);
+            return c;
         }
 
-        private IEnumerable<AnicdotClient> SearchResoursesContainAnicdotType(AnicdotType anicdotResource)
+        private List<AnicdotClient> SearchResoursesContainAnicdotType(AnicdotType anicdotResource)
         {
-            return _resources.Where(c => c.AnicdotTypes.Contains(anicdotResource));
+            return _resources.Where(c => c.AnicdotTypes.Contains(anicdotResource)).ToList();
         }
 
         private void Init()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TelegramBot
 {
@@ -9,10 +10,10 @@ namespace TelegramBot
         {
         }
 
-        public override string GetRandomAnecdot(AnicdotType anicdotType)
+        public async override Task<string> GetRandomAnecdotAsync(AnicdotType anicdotType)
         {
-            var anecdots = GetAnecdotNodesFromRandomPage().Select(n => n.GetDirectInnerText()).ToList();
-            return anecdots.GetRandom();
+            var nodes = await GetAnecdotNodesFromRandomPageAsync();
+            return nodes.Select(n => n.GetDirectInnerText()).GetRandom();
         }
     }
 }

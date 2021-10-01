@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TelegramBot
 {
@@ -10,15 +11,17 @@ namespace TelegramBot
         AnicdotType _currentAnicdotType;
         readonly string _domenUrl;
         readonly Dictionary<AnicdotType, string[]> _anicdotCategories;
-        
+
         protected readonly string _paginationXPath;
         protected readonly string _postXPath;
 
-        protected string _urlWithEndp { 
-            get {
+        protected string _urlWithEndp
+        {
+            get
+            {
                 return _domenUrl + '/' + ChooseRandomEndpoint(_currentAnicdotType);
 
-            } 
+            }
         }
 
         public List<AnicdotType> AnicdotTypes => _anicdotCategories.Keys.ToList();
@@ -31,42 +34,46 @@ namespace TelegramBot
             _postXPath = postXPath;
         }
 
-        public virtual string GetRandomAnecdot(AnicdotType anicdotType)
+        public async virtual Task<string> GetRandomAnecdotAsync(AnicdotType anicdotType)
         {
             _currentAnicdotType = anicdotType;
-            return GetRandomAnecdotNodeFromRandomPage().InnerText;
+            var  resNode = await GetRandomAnecdotNodeFromRandomPageAsync();
+            return resNode.InnerText;
         }
 
-        protected virtual HtmlNode GetRandomAnecdotNodeFromRandomPage()
+        protected async virtual Task<HtmlNode> GetRandomAnecdotNodeFromRandomPageAsync()
         {
-            return GetAnecdotNodesFromRandomPage().GetRandom();
+            var nodes = await GetAnecdotNodesFromRandomPageAsync();
+            return nodes.GetRandom();
         }
 
-        protected virtual HtmlNodeCollection GetAnecdotNodesFromRandomPage()
+        protected async virtual Task<HtmlNodeCollection> GetAnecdotNodesFromRandomPageAsync()
         {
-            int rndPagNum = new Random().Next(2, GetPaginationNumber());
-            return GetAnecdotNodesFromPage(rndPagNum);
+            int rndPagNum = new Random().Next(2, await GetPaginationNumberAsync());
+            return await GetAnecdotNodesFromPageAsync(rndPagNum);
         }
 
-        protected virtual HtmlNodeCollection GetAnecdotNodesFromPage(int paginationNamber)
+        protected async virtual Task<HtmlNodeCollection> GetAnecdotNodesFromPageAsync(int paginationNamber)
         {
-            return GetHtmlResponse(_urlWithEndp + '/' + paginationNamber)
+            var htmlResponse = await GetHtmlResponseAsync(_urlWithEndp + '/' + paginationNamber);
+            return htmlResponse
                 .DocumentNode
                 .SelectNodes(_postXPath);
         }
 
-        protected virtual int GetPaginationNumber()
+        protected async virtual Task<int> GetPaginationNumberAsync()
         {
-            string paginationString = GetHtmlResponse(_urlWithEndp)
+            var htmlResponse = await GetHtmlResponseAsync(_urlWithEndp);
+            string paginationString =  htmlResponse
                 .DocumentNode
                 .SelectSingleNode(_paginationXPath)
                 .InnerText;
             return int.Parse(paginationString);
         }
 
-        protected HtmlDocument GetHtmlResponse(string url)
+        protected async Task<HtmlDocument> GetHtmlResponseAsync(string url)
         {
-            return new HtmlWeb().Load(url);
+            return await new HtmlWeb().LoadFromWebAsync(url);
         }
 
         private string ChooseRandomEndpoint(AnicdotType anicdotType)
